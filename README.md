@@ -4,6 +4,7 @@ imoji server coding exercise
 ## Prerequisites
 * Install [mongoDB](http://docs.mongodb.org/manual/installation/)
 * Install [node](https://nodejs.org/download/)
+* Obtain `auth.js` file from administrator and place in `server/config/`
 * From root directory:
   * Run `npm install`
   * Run `node server/app.js`
