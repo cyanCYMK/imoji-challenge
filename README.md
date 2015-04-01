@@ -53,6 +53,7 @@ Topics can be searched by query string ('startsWith' case insensitive search).
 
 #### Example request:
 `GET`
+
 `http://localhost:5000/birdie/rest/topics?query=Ap`
 
 #### Example response:
@@ -71,6 +72,7 @@ Adds a trending topic to the server
 
 #### Example request:
 `POST`
+
 `http://localhost:5000/birdie/rest/topic`
 `req.body = {
   "name": "carrot"
@@ -78,8 +80,11 @@ Adds a trending topic to the server
 
 ### DELETE /birdie/rest/topic
 Removes a trending topic from the server
+
 `DELETE`
+
 `http://localhost:5000/birdie/rest/topic`
+
 `req.body = {
   "name": "carrot"
 }`
