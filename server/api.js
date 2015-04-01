@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var https = require('https');
 var url = require('url');
 var oauth2 = require('./app').oauth2;
 var Trend = require('./model');

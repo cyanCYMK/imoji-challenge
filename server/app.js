@@ -2,11 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
 var OAuth2 = require('oauth').OAuth2;
 var config = require('./config/config');
 var auth = require('./config/auth');
-var https = require('https');
 
 var app = express();
 

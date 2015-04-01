@@ -78,4 +78,8 @@ Removes a trending topic from the server
 ### POST /birdie/rest/topics/load
 Loads trending topics from Twitter and updates the data store
 
-Note: Duplicate trending topics are not checked before updating the data store.
+Notes: 
+
+* Duplicate trending topics are not checked before updating the data store.
+* Twitter REST API used is (GET trends/place)[https://dev.twitter com/rest/reference/get/trends/place]
+* `1` is used as the `WOEID`. 
