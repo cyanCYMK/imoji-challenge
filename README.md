@@ -74,6 +74,7 @@ Adds a trending topic to the server
 `POST`
 
 `http://localhost:5000/birdie/rest/topic`
+
 `req.body = {
   "name": "carrot"
 }`
