@@ -2,14 +2,12 @@ var express = require('express');
 var router = express.Router();
 var https = require('https');
 var url = require('url');
-var oauth2 = require('./app');
+var oauth2 = require('./app').oauth2;
 var Trend = require('./model');
-
+var request = require('superagent');
 
 // Gets all trending topics
-// TODO: Searches topics by supplied query string
-// 'startsWith' case insensitive search
-// ex: /birdie/rest/topics?query=hi
+// Optional query string performs 'startsWith' case insensitve search
 router.get('/birdie/rest/topics', function(req, res) {
   var queryData = url.parse(req.url, true).query;
 
@@ -47,17 +45,29 @@ router.delete('/birdie/rest/topic', function(req, res) {
 
 // Loads trending topics from Twitter and updates data store
 router.post('/birdie/rest/topics/load', function(req, res) {
-  if (!req.session) {
-    return next(new Error('No session'));
-  }
-  console.log('req.session:', req.session);
+  oauth2.getOAuthAccessToken(
+    '',
+    {'grant_type': 'client_credentials'},
+    function(e, access_token, refresh_token, results) {
+      if (e) {
+        console.log('oauth2 error:', e);
+      } else {
+        // console.log('bearer:', access_token);
+        request
+          .get('https://api.twitter.com/1.1/trends/place.json?id=1')
+          .set('Authorization', 'Bearer ' + access_token)
+          .end(function(err, res){
+            // console.log('TRENDS:', res.body[0].trends);
+            var trends = res.body[0].trends;
+            trends.forEach(function(trend) {
+              Trend.create({ name: trend.name });
+            });
+          });
 
-  // https.get('https://api.twitter.com/1.1/trends/place.json?id=1', function(res){
-  //   res.on('data', function(d) {
-  //     process.stdout.write(d);
-  //   })
-  // })
-  res.send('');
+        res.send(201);
+      }
+    }
+  );
 });
 
 module.exports = router;

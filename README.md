@@ -17,21 +17,6 @@ Gets all trending topics
 ```
 [
     {
-        "_id": "551c470714a86b4f0f82cacf",
-        "name": "durian",
-        "__v": 0
-    },
-    {
-        "_id": "551c474314a86b4f0f82cad3",
-        "name": "eggplant",
-        "__v": 0
-    },
-    {
-        "_id": "551c474f14a86b4f0f82cad4",
-        "name": "fig",
-        "__v": 0
-    },
-    {
         "_id": "551c4bc4d5ad1ac91953e9f6",
         "name": "apricot",
         "__v": 0
@@ -92,3 +77,5 @@ Removes a trending topic from the server
 
 ### POST /birdie/rest/topics/load
 Loads trending topics from Twitter and updates the data store
+
+Note: Duplicate trending topics are not checked before updating the data store.
